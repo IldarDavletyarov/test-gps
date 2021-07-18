@@ -1,18 +1,24 @@
 <template lang="pug">
-.language-changer
-  .icon(:class="{'active': isShow }")
-    icon-globe(@click.native="toggle") icon
+.language-changer(v-click-outside="close")
+  .icon(@click.stop="toggle" :class="{'active': isShow }")
+    icon-globe
   .list(v-if="isShow")
     .lang(
       v-for="lang in languages"
       :key="lang[0]"
-      @click="select(lang[0])"
+      @click.stop="select(lang[0])"
       :class="{'selected': lang[0] === $i18n.locale }"
     ) {{ lang[1] }}
 </template>
 <script>
 import IconGlobe from '../icons/globe.vue';
+
+import VueClickOutside from 'v-click-outside';
+
 export default {
+  directives: {
+    clickOutside: VueClickOutside.directive,
+  },
   components: {
     IconGlobe,
   },
@@ -66,4 +72,6 @@ export default {
       cursor pointer
       &.selected
         font-weight 600
+      &:hover
+        background #e0e0e0
 </style>
