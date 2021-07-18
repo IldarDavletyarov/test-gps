@@ -1,6 +1,5 @@
 <template lang="pug">
 #app
-  .l {{ locale }}
   layout
 </template>
 <script>
@@ -22,3 +21,12 @@ export default {
   },
 };
 </script>
+<style lang="stylus">
+html
+body
+  padding 0
+  margin 0
+  width 100vw
+  min-height 100vh
+  font-family Helvetica
+</style>
