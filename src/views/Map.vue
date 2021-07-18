@@ -15,7 +15,6 @@
     yandex-map.y-map(
       :settings="settings"
       :controls="[]"
-      :show-all-markers="true"
       :coords="mapCoords"
       @click="onMapClick"
     )
