@@ -66,19 +66,33 @@ export default {
     },
   },
   methods: {
+    async mockApi(newMarkers) {
+      await new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('Save markers successfully', newMarkers);
+          resolve();
+        }, 50);
+      });
+    },
     toggleAdding() {
       this.isAdding = !this.isAdding;
     },
     finishAdding() {
       this.isAdding = false;
     },
-    onMapClick(e) {
+    async onMapClick(e) {
       this.selectMarker(undefined);
       if (!this.isAdding) {
         return;
       }
       this.$store.dispatch('addMarker', { id: this.markers.length + 1, coords: e.get('coords') });
       this.finishAdding();
+
+      try {
+        await this.mockApi(this.markers);
+      } catch (error) {
+        console.error(error);
+      }
     },
     onMarkerClick(marker) {
       this.mapCoords = marker.coords;
