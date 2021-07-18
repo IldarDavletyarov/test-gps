@@ -13,6 +13,7 @@
     "pug": "^3.0.2",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.1.0",
+    "v-click-outside": "^3.1.2",
     "vue": "^2.6.11",
     "vue-i18n": "^8.25.0",
     "vue-router": "^3.2.0",

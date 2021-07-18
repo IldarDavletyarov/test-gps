@@ -9,7 +9,7 @@
         @click="onMarkerClick(marker)"
         :class="{ 'selected': id === marker.id }"
       )
-        .label {{ $t('map.marker') }}  № {{ marker.id }}
+        .label {{ $t('map.marker') }}  №{{ marker.id }}
         .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
   .map
     yandex-map.y-map(:settings="settings" :controls="[]" :coords="mapCoords" @click="onMapClick")
@@ -67,7 +67,7 @@ export default {
       this.isAdding = false;
     },
     onMapClick(e) {
-      this.$router.replace({ params: { id: undefined } });
+      this.selectMarker(undefined);
       if (!this.isAdding) {
         return;
       }
@@ -76,12 +76,16 @@ export default {
     },
     onMarkerClick(marker) {
       this.mapCoords = marker.coords;
+      this.selectMarker(marker.id);
     },
-    onYmapMarkerClick(marker) {
-      if (this.id === marker.id) {
+    selectMarker(id) {
+      if (this.id === id) {
         return;
       }
-      this.$router.replace({ params: { id: marker.id } });
+      this.$router.replace({ params: { id } });
+    },
+    onYmapMarkerClick(marker) {
+      this.selectMarker(marker.id);
     },
   },
 };
@@ -117,7 +121,7 @@ export default {
       position absolute
       padding 24px
       border-radius 50%
-      background blue
+      background #1776dc
       right 24px
       bottom 24px
       cursor pointer
