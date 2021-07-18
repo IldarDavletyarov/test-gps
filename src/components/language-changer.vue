@@ -52,14 +52,19 @@ export default {
     cursor pointer
     border-radius 50%
     padding 8px
-    opacity 0.3
+    opacity 1
     &.active
     &:hover
-      opacity 1
       background #e0e0e0
+      svg
+        path
+          fill #000
     svg
       display block
       margin 0
+      path
+        transition fill .3s ease
+        fill #fff
   .list
     position absolute
     top 100%
@@ -70,6 +75,8 @@ export default {
     .lang
       padding 16px
       cursor pointer
+      border-radius 4px
+      transition background-color .3s ease
       &.selected
         font-weight 600
       &:hover

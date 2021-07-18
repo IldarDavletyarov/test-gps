@@ -13,6 +13,7 @@ export default {
     },
     map: {
       markersTitle: 'Markers:',
+      noMarkers: 'Add markers',
       marker: 'Marker'
     },
     about: {
@@ -40,6 +41,7 @@ export default {
     },
     map: {
       markersTitle: 'Маркеры:',
+      noMarkers: 'Добавьте маркеры',
       marker: 'Маркер'
     },
     about: {

@@ -32,6 +32,9 @@ export default {
 <style lang="stylus">
 .header
   background #747da9
+  background-image url(https://image.api.playstation.com/vulcan/ap/rnd/202009/3001/RV4BS7bI6if8PyPOwJmVl2zc.jpg)
+  background-size cover
+  box-shadow inset 0 0 0 1000px rgba(116,125,251,.4)
   .top-header
     display flex
     justify-content space-between

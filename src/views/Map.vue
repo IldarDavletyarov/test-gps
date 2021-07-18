@@ -1,7 +1,8 @@
 <template lang="pug">
 .map-page
   .markers-wrapper
-    .title {{ $t('map.markersTitle') }}
+    .title(v-if="markers.length") {{ $t('map.markersTitle') }}
+    .no-markers(v-else) {{ $t('map.noMarkers') }}
     .markers
       .marker(
         v-for="marker in markers"
@@ -11,6 +12,7 @@
       )
         .label {{ $t('map.marker') }}  №{{ marker.id }}
         .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
+    
   .map
     yandex-map.y-map(
       :settings="settings"
@@ -114,6 +116,10 @@ export default {
   display flex
   .markers-wrapper
     width 25%
+    .no-markers
+      text-align center
+      margin 32px 0
+      color #d0e0e0
     .markers
       max-height calc(100vh - 175px)
       overflow auto
@@ -123,6 +129,7 @@ export default {
     .marker
       cursor pointer
       padding 16px
+      transition background-color .3s ease
       &.selected
       &:hover
         background #e0e0e0
