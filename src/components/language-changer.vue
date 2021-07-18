@@ -3,7 +3,12 @@
   .icon(:class="{'active': isShow }")
     icon-globe(@click.native="toggle") icon
   .list(v-if="isShow")
-    .lang(v-for="lang in languages" :key="lang[0]" @click="select(lang[0])") {{ lang[1] }}
+    .lang(
+      v-for="lang in languages"
+      :key="lang[0]"
+      @click="select(lang[0])"
+      :class="{'selected': lang[0] === $i18n.locale }"
+    ) {{ lang[1] }}
 </template>
 <script>
 import IconGlobe from '../icons/globe.vue';
@@ -18,8 +23,12 @@ export default {
     toggle() {
       this.isShow = !this.isShow;
     },
+    close() {
+      this.isShow = false;
+    },
     select(val) {
       this.$store.dispatch('setLocale', val);
+      this.close();
     },
   },
   computed: {
@@ -54,4 +63,6 @@ export default {
     .lang
       padding 16px
       cursor pointer
+      &.selected
+        font-weight 600
 </style>

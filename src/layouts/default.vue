@@ -1,9 +1,7 @@
 <template lang="pug">
 .layout-default
   Header
-  .test gello
   router-view
-
 </template>
 <script>
 import Header from '../components/header.vue';
