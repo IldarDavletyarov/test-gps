@@ -24,7 +24,7 @@
           .label ID: {{ marker.id }}
           .label Lat: {{ marker.coords[0] }}
           .label Long: {{ marker.coords[1] }}
-    .plus(@click="startAdding")
+    .plus(@click="toggleAdding" :class="{ 'active': isAdding }")
       icon-plus
 
 </template>
@@ -47,7 +47,7 @@ export default {
       version: '2.1'
     },
     isAdding: false,
-    mapCoords: [0, 0],
+    mapCoords: [55.707298976442445, 37.625740654460806], // 2 Gamsonovsky per., Moscow
   }),
   props: {
     id: {
@@ -60,8 +60,8 @@ export default {
     },
   },
   methods: {
-    startAdding() {
-      this.isAdding = true;
+    toggleAdding() {
+      this.isAdding = !this.isAdding;
     },
     finishAdding() {
       this.isAdding = false;
@@ -125,6 +125,10 @@ export default {
       right 24px
       bottom 24px
       cursor pointer
+      transition transform .3s ease
+      &.active
+        background red
+        transform rotate(45deg)
       svg
         display block
         margin auto
