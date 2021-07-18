@@ -44,8 +44,8 @@ export default {
   .icon
     transition all .3s ease
     cursor pointer
-    border-radius 16px
-    padding 4px
+    border-radius 50%
+    padding 8px
     opacity 0.3
     &.active
     &:hover
@@ -58,6 +58,7 @@ export default {
     position absolute
     top 100%
     right 0
+    z-index 1
     background #fff
     border-radius 4px
     .lang

@@ -10,7 +10,7 @@ const routes = [
     component: () => import('../views/About.vue')
   },
   {
-    path: '/map/:id',
+    path: '/map/:id?',
     name: 'map',
     component: () => import('../views/Map.vue'),
     props: true,

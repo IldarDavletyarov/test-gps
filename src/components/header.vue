@@ -31,7 +31,7 @@ export default {
 </script>
 <style lang="stylus">
 .header
-  background #f0f0f0
+  background #747da9
   .top-header
     display flex
     justify-content space-between
@@ -39,6 +39,7 @@ export default {
     .title
       margin-left 16px
       font-size 24px
+      color #fff
     .language-changer
       margin-right 16px
   .navs

@@ -6,7 +6,7 @@
       v-for="marker in markers"
       :key="marker.id"
       @click="onMarkerClick(marker)"
-      :class="{ 'selected': selectedId === marker.id }"
+      :class="{ 'selected': id === marker.id }"
     )
       .label {{ $t('map.marker') }}  № {{ marker.id }}
       .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
@@ -47,11 +47,10 @@ export default {
     },
     isAdding: false,
     mapCoords: [0, 0],
-    selectedId: undefined,
   }),
   props: {
     id: {
-      type: String,
+      type: [String, Number],
     },
   },
   computed: {
@@ -67,7 +66,7 @@ export default {
       this.isAdding = false;
     },
     onMapClick(e) {
-      this.selectedId = undefined;
+      this.$router.replace({ params: { id: undefined } });
       if (!this.isAdding) {
         return;
       }
@@ -78,7 +77,11 @@ export default {
       this.mapCoords = marker.coords;
     },
     onYmapMarkerClick(marker) {
-      this.selectedId = marker.id;
+      if (this.id === marker.id) {
+        return;
+      }
+      // this.$router.push(`/map/${marker.id}`);
+      this.$router.replace({ params: { id: marker.id } });
     },
   },
 };
