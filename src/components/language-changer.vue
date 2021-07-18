@@ -2,7 +2,7 @@
 .language-changer(v-click-outside="close")
   .icon(@click.stop="toggle" :class="{'active': isShow }")
     icon-globe
-  .list(v-if="isShow")
+  .list(v-show="isShow")
     .lang(
       v-for="lang in languages"
       :key="lang[0]"
