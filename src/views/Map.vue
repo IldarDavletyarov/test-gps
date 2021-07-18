@@ -39,6 +39,8 @@
 import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 import IconPlus from '@/icons/plus';
 
+const YANDEX_API_KEY = 'c9b49220-aea5-48a0-9633-17df1dc1100e';
+
 export default {
   name: 'Map',
   components: {
@@ -48,7 +50,7 @@ export default {
   },
   data: () => ({
     settings: {
-      apiKey: 'c9b49220-aea5-48a0-9633-17df1dc1100e',
+      apiKey: YANDEX_API_KEY,
       lang: 'ru_RU',
       coordorder: 'latlong',
       version: '2.1'

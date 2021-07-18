@@ -4,12 +4,15 @@
     .title {{ $t('header.title') }}
     language-changer
   .navs
-    router-link.nav(v-for="nav in navs" :key="nav.title" :to="nav.link") {{ nav.title.toUpperCase() }}
+    router-link.nav(v-for="nav in navs" :key="nav.title" :to="nav.link") {{ nav.title | capitalize }}
 </template>
 <script>
-import LanguageChanger from './language-changer.vue';
+import LanguageChanger from '@/components/language-changer';
 
 export default {
+  filters: {
+    capitalize: (v) => v.toUpperCase(),
+  },
   components: {
     LanguageChanger,
   },

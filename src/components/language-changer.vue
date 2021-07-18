@@ -11,7 +11,7 @@
     ) {{ lang[1] }}
 </template>
 <script>
-import IconGlobe from '../icons/globe.vue';
+import IconGlobe from '@/icons/globe';
 
 import VueClickOutside from 'v-click-outside';
 
