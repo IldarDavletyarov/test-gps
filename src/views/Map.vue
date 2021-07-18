@@ -1,15 +1,16 @@
 <template lang="pug">
 .map-page
-  .markers
+  .markers-wrapper
     .title {{ $t('map.markersTitle') }}
-    .marker(
-      v-for="marker in markers"
-      :key="marker.id"
-      @click="onMarkerClick(marker)"
-      :class="{ 'selected': id === marker.id }"
-    )
-      .label {{ $t('map.marker') }}  № {{ marker.id }}
-      .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
+    .markers
+      .marker(
+        v-for="marker in markers"
+        :key="marker.id"
+        @click="onMarkerClick(marker)"
+        :class="{ 'selected': id === marker.id }"
+      )
+        .label {{ $t('map.marker') }}  № {{ marker.id }}
+        .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
   .map
     yandex-map.y-map(:settings="settings" :controls="[]" :coords="mapCoords" @click="onMapClick")
       ymap-marker(
@@ -80,7 +81,6 @@ export default {
       if (this.id === marker.id) {
         return;
       }
-      // this.$router.push(`/map/${marker.id}`);
       this.$router.replace({ params: { id: marker.id } });
     },
   },
@@ -89,8 +89,11 @@ export default {
 <style lang="stylus">
 .map-page
   display flex
-  .markers
+  .markers-wrapper
     width 25%
+    .markers
+      max-height calc(100vh - 175px)
+      overflow auto
     .title
       font-size 24px
       margin 16px 0 24px 16px
@@ -109,7 +112,7 @@ export default {
     position relative
     .y-map
       width 100%
-      height calc(100vh - 97px)
+      height calc(100vh - 105px)
     .plus
       position absolute
       padding 24px
@@ -123,4 +126,17 @@ export default {
         margin auto
         path
           fill #fff
+  @media screen and (max-width: 600px)
+    flex-direction column
+    .markers-wrapper
+      width 100%
+      .markers
+        max-height 165px
+    .map
+      width 100%
+      .plus
+        padding 12px 
+        right 12px
+        bottom 12px
+
 </style>

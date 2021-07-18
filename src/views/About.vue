@@ -12,8 +12,10 @@
 <style lang="stylus">
 .about-page
   max-width 680px
-
   margin 36px auto
+  @media screen and (max-width: 600px)
+    margin unset
+    padding 12px
   h1
     font-weight 400
     font-size 24

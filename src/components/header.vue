@@ -45,6 +45,8 @@ export default {
   .navs
     display flex
     margin-left 24px
+    @media screen and (max-width: 640px)
+      margin-left 0
     .nav
       display block
       text-decoration none
