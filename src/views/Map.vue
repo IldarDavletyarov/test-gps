@@ -12,7 +12,13 @@
         .label {{ $t('map.marker') }}  №{{ marker.id }}
         .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
   .map
-    yandex-map.y-map(:settings="settings" :controls="[]" :coords="mapCoords" @click="onMapClick")
+    yandex-map.y-map(
+      :settings="settings"
+      :controls="[]"
+      :show-all-markers="true"
+      :coords="mapCoords"
+      @click="onMapClick"
+    )
       ymap-marker(
         v-for="marker in markers"
         :key="marker.id"
