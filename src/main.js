@@ -10,8 +10,6 @@ Vue.config.productionTip = false
 
 Vue.use(VueI18n);
 
-console.log(store);
-
 const i18n = new VueI18n({
   locale: 'ru',
   messages,

@@ -12,6 +12,7 @@ export default {
       map: 'Map',
     },
     map: {
+      markersTitle: 'Markers:',
       marker: 'Marker'
     },
     about: {
@@ -42,6 +43,7 @@ export default {
       map: 'Карта',
     },
     map: {
+      markersTitle: 'Маркеры:',
       marker: 'Маркер'
     },
     about: {
