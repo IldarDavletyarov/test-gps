@@ -11,7 +11,7 @@ export default {
   },
   computed: {
     locale() {
-      return this.$store.state.locale;
+      return this.$store.state.main.locale;
     },
   },
   watch: {
