@@ -11,7 +11,11 @@ export default {
   },
   actions: {
     async updateMarkers({ state: { markers } }) {
-      await saveMarkers(markers);
+      try {
+        await saveMarkers(markers);
+      } catch(error) {
+        console.error(error);
+      }
     },
     addMarker({ commit, dispatch }, payload) {
       commit('addMarker', payload);
