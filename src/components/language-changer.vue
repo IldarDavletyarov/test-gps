@@ -7,13 +7,15 @@
       v-for="lang in languages"
       :key="lang[0]"
       @click.stop="select(lang[0])"
-      :class="{'selected': lang[0] === $i18n.locale }"
+      :class="{'selected': lang[0] === locale }"
     ) {{ lang[1] }}
 </template>
 <script>
 import IconGlobe from '@/icons/globe';
 
 import VueClickOutside from 'v-click-outside';
+
+import { mapState } from 'vuex';
 
 export default {
   directives: {
@@ -25,6 +27,14 @@ export default {
   data: () => ({
     isShow: false,
   }),
+  computed: {
+    ...mapState({
+      locale: state => state.main.locale,
+    }),
+    languages() {
+      return Object.entries(this.$t('languages'));
+    },
+  },
   methods: {
     toggle() {
       this.isShow = !this.isShow;
@@ -35,11 +45,6 @@ export default {
     select(val) {
       this.$store.dispatch('setLocale', val);
       this.close();
-    },
-  },
-  computed: {
-    languages() {
-      return Object.entries(this.$t('languages'));
     },
   },
 };

@@ -28,7 +28,7 @@ import IconPlus from '@/icons/plus';
 import MarkerMap from '@/components/marker';
 import YandexMap from '@/components/map';
 
-const YANDEX_API_KEY = 'c9b49220-aea5-48a0-9633-17df1dc1100e';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Map',
@@ -38,12 +38,6 @@ export default {
     MarkerMap,
   },
   data: () => ({
-    settings: {
-      apiKey: YANDEX_API_KEY,
-      lang: 'ru_RU',
-      coordorder: 'latlong',
-      version: '2.1'
-    },
     isAdding: false,
     mapCoords: [55.707298976442445, 37.625740654460806], // 2 Gamsonovsky per., Moscow
   }),
@@ -53,9 +47,9 @@ export default {
     },
   },
   computed: {
-    markers() {
-      return this.$store.state.map.markers;
-    },
+    ...mapState({
+      markers: state => state.map.markers,
+    }),
   },
   methods: {
     toggleAdding() {

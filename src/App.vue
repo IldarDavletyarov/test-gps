@@ -9,14 +9,11 @@ export default {
   components: {
     Layout
   },
-  computed: {
-    locale() {
-      return this.$store.state.main.locale;
-    },
-  },
   watch: {
-    locale(val) {
-      this.$i18n.locale = val;
+    '$store.state.main.locale': {
+      handler(val) {
+        this.$i18n.locale = val;
+      }
     },
   },
 };
