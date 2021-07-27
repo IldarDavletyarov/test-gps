@@ -137,7 +137,7 @@ export default {
         margin auto
         path
           fill #fff
-  @media screen and (max-width: 600px)
+  @media screen and (max-width: 640px)
     flex-direction column
     .markers-wrapper
       width 100%
