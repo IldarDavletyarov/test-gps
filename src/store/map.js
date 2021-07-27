@@ -1,15 +1,21 @@
+import { saveMarkers } from '@/modules/markers/api';
+
 export default {
   state: {
     markers: [],
   },
   mutations: {
     addMarker(state, payload) {
-      state.markers.push(payload); // разделить на мейн и маркер
+      state.markers.push(payload);
     },
   },
   actions: {
-    addMarker({ commit }, payload) {
+    async updateMarkers({ state: { markers } }) {
+      await saveMarkers(markers);
+    },
+    addMarker({ commit, dispatch }, payload) {
       commit('addMarker', payload);
+      dispatch('updateMarkers');
     },
   },
 };
