@@ -5,11 +5,13 @@
   .slot.default
     slot
       .label {{ $t('map.marker') }}  №{{ id }}
-      .coords(v-if="coords") {{ coords.map(_ => _.toFixed(fractions)).join(separator) }}
+      .coords(v-if="coords") {{ coords | coordsFormat(fraction, separator) }}
   .slot.after(v-if="hasSlot('after')")
     slot(name="after")
 </template>
 <script>
+import { coordsFormat } from '@/utils/filters/coords';
+
 export default {
   props: {
     id: {
@@ -24,7 +26,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    fractions: {
+    fraction: {
       type: Number,
       default: 5,
     },
@@ -32,6 +34,9 @@ export default {
       type: String,
       default: ', ',
     },
+  },
+  filters: {
+    coordsFormat,
   },
   methods: {
     hasSlot(name) {
