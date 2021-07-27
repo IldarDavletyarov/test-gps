@@ -13,7 +13,7 @@
 .about-page
   max-width 680px
   margin 36px auto
-  @media screen and (max-width: 600px)
+  @media screen and (max-width: 640px)
     margin unset
     padding 12px
   h1
