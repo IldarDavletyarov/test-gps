@@ -12,13 +12,11 @@ yandex-map.y-map(
     :coords="marker.coords"
     @click="$emit('marker-click', marker)"
   )
-    .balloon(slot="balloon")
-      .label ID: {{ marker.id }}
-      .label Lat: {{ marker.coords[0] }}
-      .label Long: {{ marker.coords[1] }}
+    component(:is="balloon" slot="balloon" :marker="marker") 
 </template>
 <script>
-import { yandexMap, ymapMarker } from 'vue-yandex-maps'
+import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import DefaultBalloon from '@/components/balloons/default';
 
 import { settings } from '@/modules/map/config';
 
@@ -48,6 +46,13 @@ export default {
       Element of markers is marker:
       @prop id
       @prop coords – array with latitude and longitude
+    */
+    balloon: {
+      type: Object,
+      default: () => DefaultBalloon,
+    },
+    /*
+      Balloon is dynamic vue component
     */
   },
 }
