@@ -4,14 +4,14 @@
     .title(v-if="markers.length") {{ $t('map.markersTitle') }}
     .no-markers(v-else) {{ $t('map.noMarkers') }}
     .markers
-      .marker(
+      marker-map(
         v-for="marker in markers"
         :key="marker.id"
+        :id="marker.id"
+        :coords="marker.coords"
         @click="onMarkerClick(marker)"
-        :class="{ 'selected': id === marker.id }"
+        :is-active="id === marker.id"
       )
-        .label {{ $t('map.marker') }}  №{{ marker.id }}
-        .coords {{ marker.coords.map(_ => _.toFixed(5)).join(', ') }}
     
   .map
     yandex-map.y-map(
@@ -38,6 +38,7 @@
 <script>
 import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 import IconPlus from '@/icons/plus';
+import MarkerMap from '@/components/marker';
 
 const YANDEX_API_KEY = 'c9b49220-aea5-48a0-9633-17df1dc1100e';
 
@@ -47,6 +48,7 @@ export default {
     yandexMap,
     ymapMarker,
     IconPlus,
+    MarkerMap,
   },
   data: () => ({
     settings: {
@@ -132,7 +134,7 @@ export default {
       cursor pointer
       padding 16px
       transition background-color .3s ease
-      &.selected
+      &.active
       &:hover
         background #e0e0e0
       .coords
