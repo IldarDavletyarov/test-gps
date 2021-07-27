@@ -12,41 +12,28 @@
         @click="onMarkerClick(marker)"
         :is-active="id === marker.id"
       )
-    
+
   .map
-    yandex-map.y-map(
-      :settings="settings"
-      :controls="[]"
+    yandex-map(
       :coords="mapCoords"
+      :markers="markers"
       @click="onMapClick"
+      @marker-click="onMapMarkerClick"
     )
-      ymap-marker(
-        v-for="marker in markers"
-        :key="marker.id"
-        :marker-id="marker.id"
-        :coords="marker.coords"
-        @click="onYmapMarkerClick(marker)"
-      )
-        .balloon(slot="balloon")
-          .label ID: {{ marker.id }}
-          .label Lat: {{ marker.coords[0] }}
-          .label Long: {{ marker.coords[1] }}
     .plus(@click="toggleAdding" :class="{ 'active': isAdding }")
       icon-plus
-
 </template>
 <script>
-import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 import IconPlus from '@/icons/plus';
 import MarkerMap from '@/components/marker';
+import YandexMap from '@/components/map';
 
 const YANDEX_API_KEY = 'c9b49220-aea5-48a0-9633-17df1dc1100e';
 
 export default {
   name: 'Map',
   components: {
-    yandexMap,
-    ymapMarker,
+    YandexMap,
     IconPlus,
     MarkerMap,
   },
@@ -109,7 +96,7 @@ export default {
       }
       this.$router.replace({ params: { id } });
     },
-    onYmapMarkerClick(marker) {
+    onMapMarkerClick(marker) {
       this.selectMarker(marker.id);
     },
   },
