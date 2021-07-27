@@ -4,14 +4,14 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import store from './store'
 
-import messages from './messages';
+import { messages } from './locales';
 
 Vue.config.productionTip = false
 
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-  locale: store.state.locale,
+  locale: store.state.main.locale,
   messages,
 })
 
